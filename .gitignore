@@ -1,0 +1,49 @@
+# CodeIgniter framework (vendor copy — not app code)
+/system/
+/user_guide/
+
+# Runtime / generated
+application/cache/*
+!application/cache/index.html
+!application/cache/.htaccess
+
+application/logs/*
+!application/logs/index.html
+!application/logs/.htaccess
+
+*/config/development
+
+# Uploads & local assets (adjust if you track these)
+uploads/
+assets/uploads/
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+
+# Composer / PHP
+/vendor/
+composer.lock
+
+# IDE & editors
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*~
+/nbproject/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs & temp
+*.log
+*.tmp
+*.temp
+
+# Node (if used for front-end tooling)
+node_modules/
