@@ -10,30 +10,34 @@
     <style>
         :root {
             --color-brand: #7C3446;
-            --color-brand-light: rgba(127, 29, 29, 0.20);
-            --color-brand-mid: rgba(127, 29, 29, 0.40);
-            --color-brand-subtle: rgba(127, 29, 29, 0.05);
-            --color-bg: #0A0A0C;
-            --color-bg-card: rgba(24, 24, 27, 0.30);
-            --color-bg-elevated: #171717;
-            --color-bg-input: #262626;
-            --color-bg-tag: rgba(9, 9, 11, 1);
-            --color-surface-glass: rgba(255, 255, 255, 0.05);
-            --color-surface-white: rgba(255, 255, 255, 0.70);
-            --color-text-primary: #ffffff;
-            --color-text-secondary: #d4d4d8;
-            --color-text-muted: #a3a3a3;
+            --color-brand-light: rgba(124, 52, 70, 0.12);
+            --color-brand-mid: rgba(124, 52, 70, 0.28);
+            --color-brand-subtle: rgba(124, 52, 70, 0.06);
+            --color-bg: #f4f1ed;
+            --color-bg-card: #ffffff;
+            --color-bg-elevated: #ffffff;
+            --color-bg-input: #ffffff;
+            --color-bg-tag: #f5f3f0;
+            --color-surface-glass: rgba(124, 52, 70, 0.04);
+            --color-surface-white: rgba(255, 255, 255, 0.95);
+            --color-text-primary: #1a1516;
+            --color-text-secondary: #3f3839;
+            --color-text-muted: #6b6364;
             --color-text-brand: #7C3446;
-            --color-text-tertiary: #D9D9D9;
-            --color-brand-alt: #E25F80;
-            --color-bg-contact-input: #EDE9E4;
+            --color-text-tertiary: #52525b;
+            --color-brand-alt: #9a3d55;
+            --color-bg-contact-input: #ffffff;
             --color-text-contact-input: #1E1415;
-            --color-border: rgba(255, 255, 255, 0.20);
-            --color-border-neutral: rgba(82, 82, 82, 0.50);
+            --color-border: rgba(124, 52, 70, 0.14);
+            --color-border-neutral: #e0dbd6;
             --color-border-stone: #d6d3d1;
             --radius: 12px;
             --radius-lg: 20px;
-            --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            --shadow: 0 8px 32px rgba(30, 20, 22, 0.08), 0 2px 8px rgba(30, 20, 22, 0.04);
+            --scrollbar-size: 8px;
+            --scrollbar-track: #ebe6e1;
+            --scrollbar-thumb: #c9b8bc;
+            --scrollbar-thumb-hover: #7C3446;
         }
 
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -41,6 +45,67 @@
         html {
             scroll-behavior: smooth;
             overflow-x: hidden;
+            scrollbar-width: thin;
+            scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+        }
+
+        html::-webkit-scrollbar {
+            width: var(--scrollbar-size);
+            height: var(--scrollbar-size);
+        }
+
+        html::-webkit-scrollbar-track {
+            background: var(--scrollbar-track);
+            border-radius: 999px;
+        }
+
+        html::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #c9a8b0 0%, var(--scrollbar-thumb) 100%);
+            border-radius: 999px;
+            border: 2px solid var(--scrollbar-track);
+        }
+
+        html::-webkit-scrollbar-thumb:hover {
+            background: var(--scrollbar-thumb-hover);
+        }
+
+        html::-webkit-scrollbar-corner {
+            background: var(--scrollbar-track);
+        }
+
+        .form-stepper,
+        .form-horizontal-track,
+        .section-card {
+            scrollbar-width: thin;
+            scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+        }
+
+        .form-stepper::-webkit-scrollbar,
+        .form-horizontal-track::-webkit-scrollbar,
+        .section-card::-webkit-scrollbar {
+            width: var(--scrollbar-size);
+            height: var(--scrollbar-size);
+        }
+
+        .form-stepper::-webkit-scrollbar-track,
+        .form-horizontal-track::-webkit-scrollbar-track,
+        .section-card::-webkit-scrollbar-track {
+            background: var(--scrollbar-track);
+            border-radius: 999px;
+        }
+
+        .form-stepper::-webkit-scrollbar-thumb,
+        .form-horizontal-track::-webkit-scrollbar-thumb,
+        .section-card::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #c9a8b0 0%, var(--scrollbar-thumb) 100%);
+            border-radius: 999px;
+            border: 2px solid var(--scrollbar-track);
+        }
+
+        .form-stepper::-webkit-scrollbar-thumb:hover,
+        .form-horizontal-track::-webkit-scrollbar-thumb:hover,
+        .section-card::-webkit-scrollbar-thumb:hover {
+            background: var(--scrollbar-thumb-hover);
         }
 
         body {
@@ -57,8 +122,8 @@
             position: fixed;
             inset: 0;
             background:
-                radial-gradient(ellipse 80% 50% at 20% -10%, var(--color-brand-light), transparent),
-                radial-gradient(ellipse 60% 40% at 90% 100%, rgba(226, 95, 128, 0.08), transparent);
+                radial-gradient(ellipse 80% 50% at 20% -10%, rgba(124, 52, 70, 0.08), transparent),
+                radial-gradient(ellipse 60% 40% at 90% 100%, rgba(154, 61, 85, 0.06), transparent);
             pointer-events: none;
             z-index: 0;
         }
@@ -90,7 +155,7 @@
             font-weight: 600;
             letter-spacing: 0.06em;
             text-transform: uppercase;
-            color: var(--color-brand-alt);
+            color: var(--color-brand);
             margin-bottom: 1.25rem;
         }
 
@@ -99,7 +164,7 @@
             font-weight: 700;
             letter-spacing: -0.02em;
             margin-bottom: 0.75rem;
-            background: linear-gradient(135deg, #fff 0%, var(--color-text-secondary) 100%);
+            background: linear-gradient(135deg, var(--color-brand) 0%, var(--color-text-secondary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -123,7 +188,7 @@
             width: 100%;
             max-width: 920px;
             margin: 0 auto;
-            background: linear-gradient(180deg, rgba(30, 30, 35, 0.95) 0%, rgba(18, 18, 20, 0.98) 100%);
+            background: var(--color-bg-card);
             border: 1px solid var(--color-border);
             border-radius: var(--radius-lg);
             box-shadow: var(--shadow);
@@ -139,8 +204,8 @@
         .form-stepper-wrap {
             flex-shrink: 0;
             padding: 1rem 1rem 0.75rem;
-            border-bottom: 1px solid var(--color-border);
-            background: rgba(0, 0, 0, 0.25);
+            border-bottom: 1px solid var(--color-border-neutral);
+            background: #faf8f6;
         }
 
         .step-progress-top {
@@ -158,7 +223,7 @@
         }
 
         .step-current-label span {
-            color: var(--color-brand-alt);
+            color: var(--color-brand);
         }
 
         .step-counter {
@@ -169,7 +234,7 @@
 
         .progress-bar {
             height: 4px;
-            background: var(--color-bg-input);
+            background: var(--color-border-neutral);
             border-radius: 4px;
             overflow: hidden;
             margin-bottom: 0.75rem;
@@ -186,13 +251,10 @@
             display: flex;
             gap: 0.35rem;
             overflow-x: auto;
-            padding-bottom: 0.25rem;
+            padding-bottom: 0.35rem;
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
         }
-
-        .form-stepper::-webkit-scrollbar { display: none; }
 
         .step-btn {
             flex: 0 0 auto;
@@ -223,7 +285,7 @@
             align-items: center;
             justify-content: center;
             border-radius: 8px;
-            background: var(--color-bg-input);
+            background: #eeeae6;
             font-size: 0.72rem;
             font-weight: 700;
         }
@@ -240,7 +302,7 @@
         }
 
         .step-btn.done .step-num {
-            background: rgba(226, 95, 128, 0.4);
+            background: rgba(124, 52, 70, 0.55);
             color: #fff;
         }
 
@@ -262,11 +324,8 @@
             scroll-snap-type: x mandatory;
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
             overscroll-behavior-x: contain;
         }
-
-        .form-horizontal-track::-webkit-scrollbar { display: none; }
 
         .section-card {
             flex: 0 0 100%;
@@ -292,7 +351,7 @@
             gap: 0.65rem;
             padding: 0.75rem 1rem;
             border-top: 1px solid var(--color-border-neutral);
-            background: rgba(0, 0, 0, 0.2);
+            background: #faf8f6;
         }
 
         .btn-step-nav {
@@ -306,7 +365,7 @@
             cursor: pointer;
             transition: all 0.2s;
             border: 1px solid var(--color-border-neutral);
-            background: var(--color-bg-input);
+            background: #ffffff;
             color: var(--color-text-secondary);
         }
 
@@ -410,6 +469,7 @@
             border-radius: 10px;
             font-weight: 700;
             font-size: 0.9rem;
+            color: #fff;
         }
 
         .section-header h2 {
@@ -552,8 +612,8 @@
         }
 
         .check-item:hover {
-            border-color: var(--color-border);
-            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--color-brand-mid);
+            background: rgba(124, 52, 70, 0.05);
         }
 
         .check-item:has(input:checked) {
@@ -592,8 +652,8 @@
         .form-footer {
             flex-shrink: 0;
             padding: 1rem 1.25rem 1.15rem;
-            background: rgba(10, 10, 12, 0.5);
-            border-top: 1px solid var(--color-border);
+            background: #faf8f6;
+            border-top: 1px solid var(--color-border-neutral);
             display: flex;
             flex-direction: column;
             align-items: stretch;
@@ -662,7 +722,7 @@
         .modal-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(26, 21, 22, 0.45);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -726,7 +786,7 @@
         }
 
         .error-toast {
-            color: #fca5a5;
+            color: #b91c1c;
             font-size: 0.85rem;
             margin-top: 0.5rem;
             display: none;
