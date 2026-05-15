@@ -57,6 +57,7 @@ class CI_Session {
 
 	protected $_driver = 'files';
 	protected $_config;
+	protected $_sid_length = 40;
 
 	// ------------------------------------------------------------------------
 
@@ -130,7 +131,7 @@ class CI_Session {
 		if (isset($_COOKIE[$this->_config['cookie_name']])
 			&& (
 				! is_string($_COOKIE[$this->_config['cookie_name']])
-				OR ! preg_match('/^[0-9a-f]{40}$/', $_COOKIE[$this->_config['cookie_name']])
+				OR ! preg_match('/^[0-9a-f]{'.$this->_sid_length.'}$/', $_COOKIE[$this->_config['cookie_name']])
 			)
 		)
 		{
@@ -314,8 +315,18 @@ class CI_Session {
 		ini_set('session.use_strict_mode', 1);
 		ini_set('session.use_cookies', 1);
 		ini_set('session.use_only_cookies', 1);
-		ini_set('session.hash_function', 1);
-		ini_set('session.hash_bits_per_character', 4);
+
+		// PHP 7.1+ uses sid_length; older PHP uses hash_* (removed in PHP 8)
+		if (PHP_VERSION_ID >= 70100)
+		{
+			ini_set('session.sid_length', $this->_sid_length);
+			ini_set('session.sid_bits_per_character', 4);
+		}
+		else
+		{
+			ini_set('session.hash_function', 1);
+			ini_set('session.hash_bits_per_character', 4);
+		}
 	}
 
 	// ------------------------------------------------------------------------

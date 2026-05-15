@@ -12,8 +12,21 @@ class Home extends CI_Controller {
     {
         $this->load->model('Home_model');
 
+        $companyName = trim((string) $this->input->post('company_name'));
+        $customerSegment = trim((string) $this->input->post('customer_segment'));
         $primaryGoals = $this->_collect_checkboxes('primary_goals');
         $primaryOther = trim((string) $this->input->post('primary_goals_other'));
+
+        if ($companyName === '' || $customerSegment === '' || (empty($primaryGoals) && $primaryOther === '')) {
+            $this->output
+                ->set_content_type('application/json')
+                ->set_output(json_encode(array(
+                    'status'  => false,
+                    'message' => 'Please fill in all required fields: Company Name, Primary Customer Segment, and Primary Goals.',
+                )));
+            return;
+        }
+
         if ($primaryOther !== '') {
             $primaryGoals[] = 'Other: ' . $primaryOther;
         }
@@ -83,12 +96,12 @@ class Home extends CI_Controller {
         }
 
         $data = array(
-            'company_name'           => $this->input->post('company_name'),
+            'company_name'           => $companyName,
             'business_description'   => $this->input->post('business_description'),
             'existing_website'       => $this->input->post('existing_website'),
             'usp'                    => $this->input->post('usp'),
             'services'               => $this->input->post('services'),
-            'customer_segment'       => $this->input->post('customer_segment'),
+            'customer_segment'       => $customerSegment,
             'geographic_targeting'   => $this->input->post('geographic_targeting'),
             'primary_goals'          => !empty($primaryGoals) ? json_encode($primaryGoals) : null,
             'desired_actions'        => !empty($desiredActions) ? json_encode($desiredActions) : null,
